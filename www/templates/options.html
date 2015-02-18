@@ -7,6 +7,18 @@
           <span class="input-label">City</span>
           <input type="text" ng-model="options.city">
         </label>
+        <label class="item item-input">
+          <span class="input-label">Units</span>
+          <select ng-model="options.units">
+            <option value="metric">metric</option>
+            <option value="imperial">imperial</option>
+          </select>
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Application Id</span>
+          <input type="text" ng-model="options.appId">
+        </label>
+        <p>You can get an <code>Application Id</code> registering at <a href="http://openweathermap.org/register">http://openweathermap.org/register</a>.</p>
         <label class="item">
           <button class="button button-block button-positive" type="submit">Save</button>
         </label>

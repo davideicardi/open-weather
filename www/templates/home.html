@@ -1,5 +1,21 @@
 <ion-view view-title="Home">
   <ion-content>
-    Home
+    <h2>Weather at {{options.city}}</h2>
+    
+    <table>
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>Weather</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in forecast.list">
+          <td>{{item.dt_txt}}</td>
+          <td>{{item.weather[0].description}}</td>
+        </tr>
+      </tbody>
+    </table>
+    
   </ion-content>
 </ion-view>

@@ -20,6 +20,28 @@ angular.module('openweather', ['ionic', 'openweather.controllers'])
   });
 })
 
+.factory('$localstorage', ['$window', function($window) {
+  return {
+    set: function(key, value) {
+      $window.localStorage[key] = value;
+    },
+    get: function(key, defaultValue) {
+      return $window.localStorage[key] || defaultValue;
+    },
+    setObject: function(key, value) {
+      $window.localStorage[key] = JSON.stringify(value);
+    },
+    getObject: function(key) {
+      var st = $window.localStorage[key];
+      if (st) {
+        return JSON.parse(st);
+      }
+      
+      return null;
+    }
+  }
+}])
+
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
