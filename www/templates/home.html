@@ -9,7 +9,7 @@
     <div class="list">
       <div ng-repeat="day in days | orderBy : 'dayDate'">
         <div class="item item-divider">
-          <span>{{day.dayDate | date:'mediumDate'}}</span>
+          <span>{{day.dayDate | date:'fullDate'}}</span>
         </div>
   
         <div class="item" ng-repeat="item in day.items">
@@ -20,7 +20,7 @@
       </div>
     </div>
 
-    <a href="http://openweathermap.org/city/{{forecast.city.id}}">More</a>
+    <a href="#" ng-click="openLink('http://openweathermap.org/city/{{forecast.city.id}}')">More</a>
 
   </ion-content>
 </ion-view>

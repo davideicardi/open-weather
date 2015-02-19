@@ -5,7 +5,11 @@ angular.module('openweather.controllers', [])
   
 })
 
-.controller('HomeCtrl', function($scope, $http, $localstorage) {
+.controller('HomeCtrl', function($scope, $http, $localstorage, $window) {
+  
+  $scope.openLink = function() {
+    $window.open('http://openweathermap.org/city/{{forecast.city.id}}', '_system')
+  };
   
   $scope.doRefresh = function() {
     var options =
