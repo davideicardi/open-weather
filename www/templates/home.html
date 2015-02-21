@@ -1,4 +1,4 @@
-<ion-view view-title="Weather at {{options.city}}">
+<ion-view view-title="Weather forecast - {{options.city}}">
 
   <ion-content>
     <ion-refresher
@@ -9,16 +9,16 @@
     <div class="list ow-weather">
       <div ng-repeat="day in days | orderBy : 'dayDate'">
         <div class="item item-divider">
-          <span>{{day.dayDate | date:'fullDate'}}</span>
+          <span>{{::day.dayDate | date:'fullDate'}}</span>
         </div>
   
         <div class="item" ng-repeat="item in day.items">
-          <span class="ow-weather-daytime">{{item.dayPeriod}}</span>
-          <span class="ow-time">{{item.dt *1000 | date:'shortTime'}}</span>
-          <img class="ow-weather-icon" ng-src="http://openweathermap.org/img/w/{{item.weather[0].icon}}.png" />
-          <span class="ow-description">{{item.weather[0].description}}</span>
-          <span class="ow-temperature">{{item.main.temp | number:1}}°</span>
-          <span class="ow-wind">{{item.wind.speed * 3600 / 1000 | number:1}} km/h</span>
+          <span class="ow-weather-daytime">{{::item.dayPeriod}}</span>
+          <span class="ow-time">{{::item.dt *1000 | date:'shortTime'}}</span>
+          <img class="ow-weather-icon" ng-src="img/{{::item.weather[0].icon}}.png" />
+          <span class="ow-description">{{::item.weather[0].description}}</span>
+          <span class="ow-temperature">{{::item.main.temp | number:1}}°</span>
+          <span class="ow-wind">{{::item.wind.speed * 3600 / 1000 | number:1}} km/h</span>
         </div>
       </div>
     </div>
