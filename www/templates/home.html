@@ -6,16 +6,19 @@
         on-refresh="doRefresh()">
     </ion-refresher>
     
-    <div class="list">
+    <div class="list ow-weather">
       <div ng-repeat="day in days | orderBy : 'dayDate'">
         <div class="item item-divider">
           <span>{{day.dayDate | date:'fullDate'}}</span>
         </div>
   
         <div class="item" ng-repeat="item in day.items">
-          <span>{{item.dt *1000 | date:'shortTime'}}</span>
-          <span>{{item.weather[0].description}}</span>
-          <span class="badge">{{item.main.temp | number:1}}°</span>
+          <span class="ow-weather-daytime">{{item.dayPeriod}}</span>
+          <span class="ow-time">{{item.dt *1000 | date:'shortTime'}}</span>
+          <img class="ow-weather-icon" ng-src="http://openweathermap.org/img/w/{{item.weather[0].icon}}.png" />
+          <span class="ow-description">{{item.weather[0].description}}</span>
+          <span class="ow-temperature">{{item.main.temp | number:1}}°</span>
+          <span class="ow-wind">{{item.wind.speed * 3600 / 1000 | number:1}} km/h</span>
         </div>
       </div>
     </div>

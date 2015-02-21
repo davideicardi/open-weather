@@ -37,6 +37,28 @@ angular.module('openweather.controllers', [])
           dataItem.day = new Date(dataItem.dt * 1000);
           dataItem.day.setHours(0,0,0,0);
           
+          switch (dataItem.date.getHours()) {
+            case 1:
+            case 4:
+              dataItem.dayPeriod = "NIGTH";
+              break;
+            case 7:
+            case 10:
+              dataItem.dayPeriod = "MORNING";
+              break;
+            case 13:
+            case 16:
+              dataItem.dayPeriod = "AFTERNOON";
+              break;
+            case 19:
+            case 22:
+              dataItem.dayPeriod = "EVENING";
+              break;
+            
+            default:
+              // code
+          }
+          
           grouped[dataItem.day] = grouped[dataItem.day] || {items: [], dayDate: dataItem.day};
           grouped[dataItem.day].items.push(dataItem);
         });
