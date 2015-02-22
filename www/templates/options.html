@@ -18,7 +18,10 @@
           <span class="input-label">Application Id</span>
           <input type="text" ng-model="options.appId">
         </label>
-        <p>You can get an <code>Application Id</code> registering at <a href="http://openweathermap.org/register">http://openweathermap.org/register</a>.</p>
+        <p>You can get an <code>Application Id</code> registering at 
+          <a href="#" ng-click="openLink('http://openweathermap.org/register')">openweathermap.org/register</a>
+          .
+        </p>
         <label class="item">
           <button class="button button-block button-positive" type="submit">Save</button>
         </label>

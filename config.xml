@@ -2,7 +2,7 @@
 <widget id="com.davideicardi.openweather" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>openweather</name>
   <description>
-        Experimental weather application
+        Experimental weather application. Forecast provided by openweathermap.org .
     </description>
   <author email="davide.icardi@gmail.com" href="http://www.davideicardi.com/">
       Davide Icardi

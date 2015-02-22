@@ -14,16 +14,19 @@
   
         <div class="item" ng-repeat="item in day.items">
           <span class="ow-weather-daytime">{{::item.dayPeriod}}</span>
-          <span class="ow-time">{{::item.dt *1000 | date:'shortTime'}}</span>
+          <span class="ow-time">{{::item.dt *1000 | date:'HH:mm'}}</span>
           <img class="ow-weather-icon" ng-src="img/{{::item.weather[0].icon}}.png" />
           <span class="ow-description">{{::item.weather[0].description}}</span>
           <span class="ow-temperature">{{::item.main.temp | number:1}}°</span>
-          <span class="ow-wind">{{::item.wind.speed * 3600 / 1000 | number:1}} km/h</span>
+          <span class="ow-wind">{{::item.wind.speed * 3600 / 1000 | number:1}} <small>km/h</small></span>
         </div>
       </div>
     </div>
 
-    <a href="#" ng-click="openLink('http://openweathermap.org/city/{{forecast.city.id}}')">More</a>
-
   </ion-content>
+  
+  <div class="bar bar-footer bar-dark">
+    <a href="#" class="title" ng-click="openLink('http://openweathermap.org/city/{{forecast.city.id}}')">More</a>
+  </div>
+  
 </ion-view>

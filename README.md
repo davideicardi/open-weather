@@ -1,5 +1,7 @@
 # open-weather
 
+Experimental weather mobile application. Forecast provided by openweathermap.org .
+
 
 ## Cloud 9 workspace
 

@@ -2,15 +2,21 @@ angular.module('openweather.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
+  $scope.openLink = function(url) {
+    if (typeof navigator !== "undefined" && navigator.app) {
+        // Mobile device.
+        navigator.app.loadUrl(url, {openExternal: true});
+    } else {
+        // Possible web browser
+        window.open(url, "_blank");
+    }
+  };
+
   
 })
 
-.controller('HomeCtrl', function($scope, $http, $localstorage, $window) {
-  
-  $scope.openLink = function() {
-    $window.open('http://openweathermap.org/city/{{forecast.city.id}}', '_system')
-  };
-  
+.controller('HomeCtrl', function($scope, $http, $localstorage) {
+
   $scope.doRefresh = function() {
     var options =
       $localstorage.getObject("options")
