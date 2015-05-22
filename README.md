@@ -15,6 +15,8 @@ https://ide.c9.io/davideicardi/open-weather
     ionic serve $PORT --nobrowser --nolivereload
     
 
+NOTE: Remember that openweathermap.org API are only HTTP, so always use http also for webserver.
+
 
 ## Emulators
 

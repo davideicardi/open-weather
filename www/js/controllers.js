@@ -1,3 +1,5 @@
+/* globals angular */
+
 angular.module('openweather.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
@@ -23,7 +25,7 @@ angular.module('openweather.controllers', [])
       || { city : "New York", units: "metric" };
     $scope.options = options;
     
-    var url = "http://api.openweathermap.org/data/2.5/forecast"
+    var url = "http://api.openweathermap.org/data/2.5/forecast";
     var params = { 
       q: options.city, 
       units: options.units 
@@ -38,33 +40,30 @@ angular.module('openweather.controllers', [])
         $scope.forecast = data;
         var grouped = {};
         
+        var utcOffsetMs = (new Date()).getTimezoneOffset() * 60000;
+        
         angular.forEach(data.list, function(dataItem) {
-          dataItem.date = new Date(dataItem.dt * 1000);
-          dataItem.day = new Date(dataItem.dt * 1000);
+          dataItem.wind.speedKmH = dataItem.wind.speed * 3600 / 1000;
+          // dt is a unix time with UTC/GMT time zone
+          dataItem.date = new Date(dataItem.dt * 1000 + utcOffsetMs);
+          dataItem.day = new Date(dataItem.dt * 1000 + utcOffsetMs);
           dataItem.day.setHours(0,0,0,0);
           
-          switch (dataItem.date.getHours()) {
-            case 1:
-            case 4:
-              dataItem.dayPeriod = "NIGTH";
-              break;
-            case 7:
-            case 10:
-              dataItem.dayPeriod = "MORNING";
-              break;
-            case 13:
-            case 16:
-              dataItem.dayPeriod = "AFTERNOON";
-              break;
-            case 19:
-            case 22:
-              dataItem.dayPeriod = "EVENING";
-              break;
-            
-            default:
-              // code
-          }
+          var hours = dataItem.date.getHours();
           
+          if (hours >= 0 && hours < 6){
+              dataItem.dayPeriod = "NIGTH";
+          }
+          else if (hours >= 6 && hours < 12){
+              dataItem.dayPeriod = "MORNING";
+          }
+          else if (hours >= 12 && hours < 18){
+              dataItem.dayPeriod = "AFTERNOON";
+          }
+          else if (hours >= 18 && hours < 24){
+              dataItem.dayPeriod = "EVENING";
+          }
+
           grouped[dataItem.day] = grouped[dataItem.day] || {items: [], dayDate: dataItem.day};
           grouped[dataItem.day].items.push(dataItem);
         });

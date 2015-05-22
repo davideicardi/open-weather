@@ -35,10 +35,20 @@
     background-repeat: no-repeat;
     background-size: 1em 1em;
     font-weight: bold;
-
+    
     display: flex;
     position: absolute;
     top: 5px;
     right: 16px;
     color: #AAAAAA;
+}
+
+.ow-weather .ow-description {
+    position: relative;
+}
+.ow-weather .ow-description .ow-rain {
+    position: absolute;
+    bottom: -1.5em;
+    left: 2em;
+    font-size: 0.7em;
 }
