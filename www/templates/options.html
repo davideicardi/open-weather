@@ -3,11 +3,15 @@
 
     <form ng-submit="save()">
       <div class="list">
-        <label class="item item-input item-button-right">
+        <label class="item item-input">
           <span class="input-label">City</span>
           <input type="text" ng-model="options.city">
         </label>
-        <button type="button" class="button button-positive" ng-click="setCurrentLocation()"><i class="ion-android-locate"></i></button>
+        <div class="padding">
+          <button type="button" class="button button-calm button-block button-small" ng-click="setCurrentLocation()">
+            Get Location <i class="ion-android-locate"></i>
+          </button>
+        </label>
         <label class="item item-input">
           <span class="input-label">Units</span>
           <select ng-model="options.units">
@@ -16,15 +20,15 @@
           </select>
         </label>
         <label class="item item-input">
-          <span class="input-label">Application Id</span>
+          <span class="input-label">App Id</span>
           <input type="text" ng-model="options.appId">
         </label>
         <div class="padding">
-          get an <code>Application Id</code> at 
-          <a href="#" ng-click="openLink('http://openweathermap.org/register')">openweathermap.org/register</a>.
+          Register at 
+          <a href="#" ng-click="openLink('http://openweathermap.org/register')">openweathermap.org</a> to get an Id.
         </div>
         <div class="padding">
-          <button class="button button-block button-positive" type="submit">Save</button>
+          <button class="button button-block button-balanced" type="submit">Save</button>
         </label>
       </div>
     </form>

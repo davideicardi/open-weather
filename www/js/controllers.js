@@ -1,8 +1,8 @@
-/* globals angular google */
+/* globals angular */
 
-angular.module("openweather.controllers", ["ngCordova"])
+angular.module("openweather.controllers", ["ngOpenWeatherMap", "ngGeoLocation"])
 
-.controller("AppCtrl", function($scope, $ionicModal, $timeout) {
+.controller("AppCtrl", function($scope) {
 
   $scope.openLink = function(url) {
     if (typeof navigator !== "undefined" && navigator.app) {
@@ -18,7 +18,7 @@ angular.module("openweather.controllers", ["ngCordova"])
   
 })
 
-.controller('HomeCtrl', function($scope, $http, $localstorage) {
+.controller('HomeCtrl', function($scope, owmApi, $localstorage) {
 
   $scope.options = null;
   $scope.loading = false;
@@ -33,16 +33,7 @@ angular.module("openweather.controllers", ["ngCordova"])
       || { city : "New York", units: "metric" };
     $scope.options = options;
     
-    var url = "http://api.openweathermap.org/data/2.5/forecast";
-    var params = { 
-      q: options.city, 
-      units: options.units 
-    };
-    if (options.appId) {
-      params.APPID = options.appId;
-    }
-  
-    $http.get(url, { params : params } ).
+    owmApi.getForecast5Days(options.city, options.units, options.appId).
       success(function(data, status, headers, config) {
         
         $scope.location = data.city;
@@ -97,52 +88,26 @@ angular.module("openweather.controllers", ["ngCordova"])
   $scope.doRefresh();
 })
 
-.controller('OptionsCtrl', function($scope, $log, $localstorage, $state, $ionicPlatform, $cordovaGeolocation) {
+.controller('OptionsCtrl', function($scope, $log, $localstorage, $state, geoLocation) {
   
   $scope.options =
     $localstorage.getObject("options")
     || { city : "New York", units: "metric" };
   
   $scope.save = function() {
-    
     $localstorage.setObject("options", $scope.options);
     
     $state.go('app.home', {}, {location: 'replace', reload: true});
   };
   
-  function setCurrentLocationFromCoord(latitude, longitude){
-    var geocoder = new google.maps.Geocoder();
-    var latlng = new google.maps.LatLng(latitude, longitude);
-    
-    geocoder.geocode(
-      {'latLng': latlng}, 
-      function(results, status) {
-        if (status == google.maps.GeocoderStatus.OK) {
-          if (results[0]) {
-            $scope.options.city = results[0].formatted_address;
-          }
-          else  {
-            alert("address not found");
-          }
-        }
-         else {
-            alert("Geocoder failed due to: " + status);
-        }
-      }
-    );    
-  }
-  
   $scope.setCurrentLocation = function() {
-    $ionicPlatform.ready(function() {
-      var posOptions = {timeout: 10000, enableHighAccuracy: false};
-      $cordovaGeolocation
-          .getCurrentPosition(posOptions)
-          .then(function (position) {
-            setCurrentLocationFromCoord(position.coords.latitude, position.coords.longitude);
-          }, function(err) {
-            alert("failed to get coordinates " + err);
-          });
-    });    
+    geoLocation.getCity()
+    .then(function(city){
+      $scope.options.city = city;
+    },
+    function(err){
+      alert(err);
+    });
   };
   
 })
