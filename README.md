@@ -1,9 +1,13 @@
-# open-weather
+# Open Weather
 
-Free and open source weather application. Forecast data provided by [openweathermap.org](http://openweathermap.org/).
+Open Weather is a free (no ads) and open source weather application created for educational purposes.
+Forecast data are provided by [openweathermap.org](http://openweathermap.org/).
 
-I have created this app just for fun completely inside a browser, using Cloud 9 as a development environment,
-Cordova + Ionic as a framework and Phonegap Build service to build it.
+Open Weather is an hybrid mobile apps powered by HTML 5, 
+the development was done completely inside a browser, using Cloud 9 as a development environment, 
+Cordova, Ionic, AngularJS and Phonegap Build service for the final build.
+
+Suggestions or code improvements are welcome!
 
 ## Testing on browser
 

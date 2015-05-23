@@ -1,8 +1,8 @@
-<ion-view view-title="Options">
+<ion-view view-title="Open Weather - Options">
   <ion-content>
 
     <form ng-submit="save()">
-      <div class="list">
+      <div class="list list-inset">
         <label class="item item-input">
           <span class="input-label">City</span>
           <input type="text" ng-model="options.city">
@@ -18,11 +18,11 @@
           <span class="input-label">Application Id</span>
           <input type="text" ng-model="options.appId">
         </label>
-        <p>You can get an <code>Application Id</code> registering at 
-          <a href="#" ng-click="openLink('http://openweathermap.org/register')">openweathermap.org/register</a>
-          .
-        </p>
-        <label class="item">
+        <div class="padding">
+          get an <code>Application Id</code> at 
+          <a href="#" ng-click="openLink('http://openweathermap.org/register')">openweathermap.org/register</a>.
+        </div>
+        <div class="padding">
           <button class="button button-block button-positive" type="submit">Save</button>
         </label>
       </div>

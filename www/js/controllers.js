@@ -10,6 +10,7 @@ angular.module('openweather.controllers', [])
         navigator.app.loadUrl(url, {openExternal: true});
     } else {
         // Possible web browser
+        alert(url);
         window.open(url, "_blank");
     }
   };
@@ -19,9 +20,16 @@ angular.module('openweather.controllers', [])
 
 .controller('HomeCtrl', function($scope, $http, $localstorage) {
 
+  $scope.options = null;
+  $scope.loading = false;
+  $scope.error = null;
+  $scope.location = null;
+
   $scope.doRefresh = function() {
-    var options =
-      $localstorage.getObject("options")
+    $scope.loading = true;
+    $scope.error = null;
+
+    var options = $localstorage.getObject("options")
       || { city : "New York", units: "metric" };
     $scope.options = options;
     
@@ -37,7 +45,7 @@ angular.module('openweather.controllers', [])
     $http.get(url, { params : params } ).
       success(function(data, status, headers, config) {
         
-        $scope.forecast = data;
+        $scope.location = data.city;
         var grouped = {};
         
         var utcOffsetMs = (new Date()).getTimezoneOffset() * 60000;
@@ -77,10 +85,12 @@ angular.module('openweather.controllers', [])
       error(function(data, status, headers, config) {
         // called asynchronously if an error occurs
         // or server returns response with an error status.
+        $scope.error = data;
       })
       .finally(function() {
          // Stop the ion-refresher from spinning
          $scope.$broadcast('scroll.refreshComplete');
+         $scope.loading = false;
        });
   };
   
@@ -97,8 +107,13 @@ angular.module('openweather.controllers', [])
     
     $localstorage.setObject("options", $scope.options);
     
-    $state.go('app.home', {}, {location: 'replace'});
+    $state.go('app.home', {}, {location: 'replace', reload: true});
   };
   
+})
+
+.controller('AboutCtrl', function($scope, $log, $localstorage, $state) {
+  
+
 });
 

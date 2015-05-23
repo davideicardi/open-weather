@@ -52,8 +52,20 @@ angular.module('openweather', ['ionic', 'openweather.controllers'])
     controller: 'AppCtrl'
   })
 
+  .state('app.about', {
+    url: "/about",
+    cache: false,
+    views: {
+      'menuContent': {
+        templateUrl: "templates/about.html",
+        controller: 'AboutCtrl'
+      }
+    }
+  })
+
   .state('app.home', {
     url: "/home",
+    cache: false,
     views: {
       'menuContent': {
         templateUrl: "templates/home.html",
