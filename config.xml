@@ -1,14 +1,19 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <widget id="com.davideicardi.openweather" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>openweather</name>
+  <name>Open Weather</name>
   <description>
-        Experimental weather mobile application. Forecast provided by openweathermap.org .
-    </description>
+    Free and open source Weather application. Forecast provided by openweathermap.org.
+  </description>
   <author email="davide.icardi@gmail.com" href="http://www.davideicardi.com/">
-      Davide Icardi
-    </author>
-  <content src="index.html"/>
-  <access origin="*"/>
+    Davide Icardi
+  </author>
+  <content src="index.html" />
+  <access origin="*" />
 
+  <feature name="Device">
+      <param name="android-package" value="org.apache.cordova.device.Device" />
+      <param name="ios-package" value="CDVDevice" />
+  </feature>
+  
   <icon src="res/open-weather-96x96.png" />
 </widget>
