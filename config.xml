@@ -9,11 +9,6 @@
     </author>
   <content src="index.html"/>
   <access origin="*"/>
-  <preference name="webviewbounce" value="false"/>
-  <preference name="UIWebViewBounce" value="false"/>
-  <preference name="DisallowOverscroll" value="true"/>
-  <preference name="BackupWebStorage" value="none"/>
-  <feature name="StatusBar">
-    <param name="ios-package" value="CDVStatusBar" onload="true"/>
-  </feature>
+
+  <icon src="res/open-weather-96x96.png" />
 </widget>
