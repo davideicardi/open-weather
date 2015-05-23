@@ -1,8 +1,8 @@
-/* globals angular */
+/* globals angular google */
 
-angular.module('openweather.controllers', [])
+angular.module("openweather.controllers", ["ngCordova"])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller("AppCtrl", function($scope, $ionicModal, $timeout) {
 
   $scope.openLink = function(url) {
     if (typeof navigator !== "undefined" && navigator.app) {
@@ -97,7 +97,7 @@ angular.module('openweather.controllers', [])
   $scope.doRefresh();
 })
 
-.controller('OptionsCtrl', function($scope, $log, $localstorage, $state) {
+.controller('OptionsCtrl', function($scope, $log, $localstorage, $state, $ionicPlatform, $cordovaGeolocation) {
   
   $scope.options =
     $localstorage.getObject("options")
@@ -108,6 +108,41 @@ angular.module('openweather.controllers', [])
     $localstorage.setObject("options", $scope.options);
     
     $state.go('app.home', {}, {location: 'replace', reload: true});
+  };
+  
+  function setCurrentLocationFromCoord(latitude, longitude){
+    var geocoder = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(latitude, longitude);
+    
+    geocoder.geocode(
+      {'latLng': latlng}, 
+      function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          if (results[0]) {
+            $scope.options.city = results[0].formatted_address;
+          }
+          else  {
+            alert("address not found");
+          }
+        }
+         else {
+            alert("Geocoder failed due to: " + status);
+        }
+      }
+    );    
+  }
+  
+  $scope.setCurrentLocation = function() {
+    $ionicPlatform.ready(function() {
+      var posOptions = {timeout: 10000, enableHighAccuracy: false};
+      $cordovaGeolocation
+          .getCurrentPosition(posOptions)
+          .then(function (position) {
+            setCurrentLocationFromCoord(position.coords.latitude, position.coords.longitude);
+          }, function(err) {
+            alert("failed to get coordinates " + err);
+          });
+    });    
   };
   
 })

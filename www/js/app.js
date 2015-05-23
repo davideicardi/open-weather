@@ -1,9 +1,5 @@
-// Ionic Starter App
+/* globals angular cordova */
 
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-// 'openweather.controllers' is found in controllers.js
 angular.module('openweather', ['ionic', 'openweather.controllers'])
 
 .run(function($ionicPlatform) {
@@ -12,10 +8,6 @@ angular.module('openweather', ['ionic', 'openweather.controllers'])
     // for form inputs)
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-    }
-    if (window.StatusBar) {
-      // org.apache.cordova.statusbar required
-      StatusBar.styleDefault();
     }
   });
 })
@@ -39,7 +31,7 @@ angular.module('openweather', ['ionic', 'openweather.controllers'])
       
       return null;
     }
-  }
+  };
 }])
 
 .config(function($stateProvider, $urlRouterProvider) {

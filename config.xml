@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
-<widget id="com.davideicardi.openweather" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget 
+  id="com.davideicardi.openweather"
+  version="0.0.1" 
+  xmlns="http://www.w3.org/ns/widgets" 
+  xmlns:gap="http://phonegap.com/ns/1.0"
+  xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  
   <name>Open Weather</name>
   <description>
     Free and open source Weather application. Forecast provided by openweathermap.org.
@@ -16,4 +22,6 @@
   </feature>
   
   <icon src="res/open-weather-96x96.png" />
+  
+  <gap:plugin name="org.apache.cordova.geolocation" />
 </widget>
