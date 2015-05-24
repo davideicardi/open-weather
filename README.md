@@ -50,3 +50,7 @@ After that all you have to do is to write an angular app that read the openweath
 
 - Forecast data weather data from [openweathermap.org](http://openweathermap.org/)
 - open-weather icon create by [Rafiqul Hassan](http://www.iconarchive.com/artist/rafiqul-hassan.html)
+
+## License
+
+[GNU GPL (GENERAL PUBLIC LICENSE)](http://www.gnu.org/licenses/gpl-3.0.en.html)
