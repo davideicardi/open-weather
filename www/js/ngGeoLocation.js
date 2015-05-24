@@ -17,9 +17,19 @@ angular.module("ngGeoLocation", ["ionic", "ngCordova"])
             function(results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
 					for (var i = 0; i < results.length; i++) {
-						if (results[i].types[0] === "locality") {
-							var city = results[i].address_components[0].short_name;
-							var state = results[i].address_components[2].short_name;
+					    var result = results[i];
+						if (result.types[0] === "locality") {
+							var city;
+							var state;
+                            for (var a = 0; a < result.address_components.length; a++){
+                                var component = result.address_components[a];
+                                if (component.types[0] === "locality"){
+                                    city = component.short_name;
+                                }
+                                if (component.types[0] === "country"){
+                                    state = component.short_name;
+                                }
+                            }
 
                             deferred.resolve(city + ", " + state);
 							return;

@@ -52,3 +52,9 @@
     left: 2em;
     font-size: 0.7em;
 }
+
+.ow-weather .ow-options input {
+    width: auto;
+    flex: auto;
+    -webkit-flex: auto;
+}
