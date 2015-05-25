@@ -15,8 +15,6 @@ Suggestions or code improvements are welcome!
 
 ![screenshot 2](https://raw.githubusercontent.com/davideicardi/open-weather/master/docs/Screenshot_2.png)
 
-![screenshot 3](https://raw.githubusercontent.com/davideicardi/open-weather/master/docs/Screenshot_3.png)
-
 
 ## Testing on browser
 
