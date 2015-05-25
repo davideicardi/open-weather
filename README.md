@@ -9,6 +9,10 @@ Cordova, Ionic, AngularJS and Phonegap Build service for the final build.
 
 Suggestions or code improvements are welcome!
 
+## Screenshots
+
+
+
 ## Testing on browser
 
 To test the application without compiling it use:
